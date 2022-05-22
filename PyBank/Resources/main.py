@@ -4,45 +4,37 @@
 import os
 import csv
 
-#need to fix this####
-budget_data = os.path.join("PyBank","Resources", "budget_data.csv")
+budget_data = os.path.join("budget_data.csv")
+budget_data = "budget_data.csv"
 
 #open and read csv file
 with open (budget_data, newline="") as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=",")
+    csvreader = csv.reader(csv_file, delimiter=",")
     
+    #Read Head row 
+    csvheader= next(csv_file)
+    #print(f"Header:{csv_header}")----------> unsure if neeeded
     
-    #Print report header
-    print ("Financial Analysis")
-    print ("----------------------------")
+    #Find number of months and profit in dataset
+    month = []
+    profit = []
     
-    #Total number of months in dataset
-month = True
-months = 0
-
-for row in csv_reader:
-    if row[0] ==  True:
-        months = months+1
-
-        month = True
-        
-    if month is None:   
-        print (months)
+    for row in csvreader:
+        month.append(row[0])
+        profit.append(row[1])
     
-    #months.append (rows[1])
-    
-    #print(f" Total Months : " + str(len(months)))
-    
-
-
+total_months = len(month)
+total_profit = sum(profit)
+print(str(total_profit))
 # The net total amount of "Profit/Losses" over the entire period
-# def average(numbers):
-#     length = len(numbers)
+# def average(profit):
+#     length = len(profit)
 #     total = 0.0
-#     for number in numbers:
+#     for number in profit:
 #         total += number
 #     return total / length
-#
+    
+# print (average(profit))
 
 # Test your function with the following:
 # print(average([1, 5, 9]))
@@ -57,6 +49,11 @@ for row in csv_reader:
 
 # The greatest decrease in losses (date and amount) over the entire period
 
-#Read Head row ----------> unsure if neeeded
-    #csv_header= next(csv_file)
-    #print(f"Header:{csv_header}")
+
+    
+    
+    #Print results
+print ("Financial Analysis")
+print ("----------------------------")
+print(f" Total Months : " + str(total_months))
+#print(f"Total: $" +str(profit))
