@@ -24,7 +24,7 @@ with open (budget_data, newline="") as csv_file:
         profit.append(row[1])
     
 total_months = len(month)
-total_profit = sum(profit)
+total_profit = sum(int(x) for x in profit)
 print(str(total_profit))
 # The net total amount of "Profit/Losses" over the entire period
 # def average(profit):
@@ -55,5 +55,5 @@ print(str(total_profit))
     #Print results
 print ("Financial Analysis")
 print ("----------------------------")
-print(f" Total Months : " + str(total_months))
-#print(f"Total: $" +str(profit))
+print(f"Total Months : " + str(total_months))
+print(f"Total: $" +str(total_profit))
