@@ -4,8 +4,8 @@
 import os
 import csv
 
-budget_data = os.path.join("budget_data.csv")
-budget_data = "budget_data.csv"
+budget_data = os.path.join("Resources","budget_data.csv")
+
 
 #open and read csv file
 with open (budget_data, newline="") as csv_file:
@@ -13,7 +13,7 @@ with open (budget_data, newline="") as csv_file:
     
     #Read Head row 
     csvheader= next(csv_file)
-    #print(f"Header:{csv_header}")----------> unsure if neeeded
+    
     
     #create lists for calcuations
     month = []
@@ -25,7 +25,7 @@ with open (budget_data, newline="") as csv_file:
         profit.append(row[1])
     
     for y in range(len(profit)-1):
-        profit_change.append(int(profit[y+1])-int(profit[y]))
+        profit_change.append(int(profit[y+1])-int(profit[y])) #step through with tutor
             
 
 #find total months
@@ -54,5 +54,29 @@ print ("----------------------------")
 print (f"Total Months : " + str(total_months))
 print (f"Total: $" +str(total_profit))
 print (f"Average Change: $"+str(ave_change))
-print (f"Greatest Increase in Profits "+ {month(month_increase)} +"($"+ str(max_increase)+")")
-print (f"Greatest Increase in Profits "+ {month(month_decrease)} +"($"+ str(max_decrease)+")")
+print (f"Greatest Increase in Profits  {month[month_increase]} ${max_increase}")
+print (f"Greatest Increase in Profits  {month[month_decrease]} $ {max_decrease}")
+
+# Specify the file to write to
+output_path = os.path.join("Analysis", "analysis.txt")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'a', newline='') as f:
+
+    
+    # Write Analysis in Analysis/analysis.txt
+    f.write("Financial Analysis \n")
+    f.write("----------------------------")
+    f.write("\n")
+    f.write(f"Total Months : " + str(total_months))
+    f.write("\n")
+    f.write(f"Total: $" +str(total_profit))
+    f.write("\n")
+    f.write(f"Average Change: $"+str(ave_change))
+    f.write ("\n")
+    f.write
+    f.write("\n")
+    f.write
+    f.write("\n")
+
+
