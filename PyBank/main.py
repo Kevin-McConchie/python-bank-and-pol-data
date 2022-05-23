@@ -51,11 +51,11 @@ month_decrease = profit_change.index(min(profit_change))+1
     #Print results
 print ("Financial Analysis")
 print ("----------------------------")
-print (f"Total Months : " + str(total_months))
-print (f"Total: $" +str(total_profit))
-print (f"Average Change: $"+str(ave_change))
-print (f"Greatest Increase in Profits  {month[month_increase]} ${max_increase}")
-print (f"Greatest Increase in Profits  {month[month_decrease]} $ {max_decrease}")
+print (f"Total Months : {str(total_months)}")
+print (f"Total: ${(total_profit)}")
+print (f"Average Change: ${str(ave_change)}")
+print (f"Greatest Increase in Profits {month[month_increase]} ${max_increase}")
+print (f"Greatest Increase in Profits {month[month_decrease]} ${max_decrease}")
 
 # Specify the file to write to
 output_path = os.path.join("Analysis", "analysis.txt")
@@ -65,18 +65,12 @@ with open(output_path, 'a', newline='') as f:
 
     
     # Write Analysis in Analysis/analysis.txt
-    f.write("Financial Analysis \n")
-    f.write("----------------------------")
-    f.write("\n")
-    f.write(f"Total Months : " + str(total_months))
-    f.write("\n")
-    f.write(f"Total: $" +str(total_profit))
-    f.write("\n")
-    f.write(f"Average Change: $"+str(ave_change))
-    f.write ("\n")
-    f.write
-    f.write("\n")
-    f.write
-    f.write("\n")
+    f.write("Financial Analysis\n")
+    f.write("----------------------------\n")
+    f.write(f"Total Months : {str(total_months)}\n")
+    f.write(f"Total: ${(total_profit)}\n")
+    f.write(f"Average Change: ${str(ave_change)}\n")
+    f.write(f"Greatest Increase in Profits {month[month_increase]} ${max_increase}\n")
+    f.write(f"Greatest Increase in Profits {month[month_decrease]} ${max_decrease}\n")
 
 
