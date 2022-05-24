@@ -20,6 +20,7 @@ with open (election_data, newline="") as csv_file:
     candidates=[]
     vote_percent=[]
     candidate_votes=[]
+    
     total_votes=0
     
     #collation of candidate and votes
@@ -35,15 +36,10 @@ with open (election_data, newline="") as csv_file:
         else:
             poll_result[candidate] = 1
             
-        
-for p in candidate_votes:
-    vote_percent.append(p/total_votes*100)
-
-    #print(p, vote_percent[p])
 
 
 #assign dictionary values to list so they can be zipped together
-candidates= list(poll_result.items())
+candidates= list(poll_result.keys())
 candidate_votes=list(poll_result.values())
 
 for p in candidate_votes:
@@ -52,31 +48,37 @@ for p in candidate_votes:
 
 #prints list of canditate and their votes (vertical print of dicitionary)
 # Zip all three lists together into tuples
-result_table = zip(candidate, vote_percent, candidate_votes)
+result_table = zip(candidates, vote_percent, candidate_votes)
 
+for i, (candidates, vote_percent, candidate_votes) in enumerate(result_table):
+    print(f"{candidates}:  {vote_percent}% ({candidate_votes})")
 
-#print(candidate, poll_result[candidate])
-
-
-## The percentage of votes each candidate won
 
 
 ## The winner of the election based on popular vote.
-#vote_max = max(candidate_votes)
 
+#winner = max(candidate_votes)
 
+# save the output file path
+output_path = os.path.join("Analysis", "Election Result.txt")
+
+# open the output file with summary of election results
+with open(output_path, 'w', newline='') as f:
+    
+        f.write(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
+        #f.write(f"{[result_table]}\n-------------------------\n")
+        f.write(f"{candidates}:  {vote_percent}% ({candidate_votes})")
+    
+
+    
 #print results
 print("Election Results:")
 print("-------------------------")
 print(f"Total Votes: {(total_votes)}")
 print("-------------------------")
-
-
-print (result_table)
-
-
-# save the output file path
-#output_file = os.path.join("output.csv")
-
-# open the output file, create a header row, and then write the zipped object to the csv
-#with open(output_file, "w", newline='') as datafile:
+# print ((result_table))
+# print (tuple(result_table))
+# print(vote_percent)
+# print(candidate_votes)
+# print (candidates)
+#print(candidate, poll_result[candidate])
