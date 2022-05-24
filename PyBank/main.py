@@ -25,7 +25,7 @@ with open (budget_data, newline="") as csv_file:
         profit.append(row[1])
     
     for y in range(len(profit)-1):
-        profit_change.append(int(profit[y+1])-int(profit[y])) #step through with tutor
+        profit_change.append(int(profit[y+1])-int(profit[y]))
             
 
 #find total months

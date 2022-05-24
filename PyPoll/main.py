@@ -43,15 +43,20 @@ candidates= list(poll_result.keys())
 candidate_votes=list(poll_result.values())
 
 for p in candidate_votes:
-    vote_percent.append(round(p/total_votes*100,3))#--------> only rounding to 1 decimal place
+    vote_percent.append('{:.3f}%'.format(p/total_votes*100,3))
     
 
-#prints list of canditate and their votes (vertical print of dicitionary)
-# Zip all three lists together into tuples
+#print results
+print("Election Results:")
+print("-------------------------")
+print(f"Total Votes: {(total_votes)}")
+print("-------------------------")
 result_table = zip(candidates, vote_percent, candidate_votes)
 
+#prints list of canditate and their votes (vertical print of dicitionary)
+# Zip all three lists together
 for i, (candidates, vote_percent, candidate_votes) in enumerate(result_table):
-    print(f"{candidates}:  {vote_percent}% ({candidate_votes})")
+    print(f"{candidates}:  {vote_percent} ({candidate_votes})")
 
 
 
@@ -63,19 +68,17 @@ for i, (candidates, vote_percent, candidate_votes) in enumerate(result_table):
 output_path = os.path.join("Analysis", "Election Result.txt")
 
 # open the output file with summary of election results
-with open(output_path, 'w', newline='') as f:
+with open(output_path, 'w', newline='') as textfile:
     
-        f.write(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
-        #f.write(f"{[result_table]}\n-------------------------\n")
-        f.write(f"{candidates}:  {vote_percent}% ({candidate_votes})")
+        textfile.writelines(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
+        for entry in result_table:
+            textfile.writelines(f"{entry[0]}: {entry[2]}% ({entry[1]})\n")
+        
+        
     
 
     
 #print results
-print("Election Results:")
-print("-------------------------")
-print(f"Total Votes: {(total_votes)}")
-print("-------------------------")
 # print ((result_table))
 # print (tuple(result_table))
 # print(vote_percent)
