@@ -63,14 +63,8 @@ print("-------------------------")
 
 
 #find winner
-# winner = []
-
-# for name in result_table:
-#     if max(candidate_votes)== name[2]:
-#         winner.append(name[0])
-
-# # add winner to results
-# print(winner)
+winner = max(poll_result,key=poll_result.get)
+print(winner)
 
 # save the output file path
 output_path = os.path.join("Analysis", "Election Result.txt")
@@ -82,7 +76,7 @@ with open(output_path, 'w', newline='') as textfile:
         for row in result_table:
             textfile.writelines(f"{row[0]}: {row[1]}% ({row[2]})\n")
         textfile.writelines("-------------------------\n")
-        textfile.writelines(f"Winner: xxxx\n")
+        textfile.writelines(f"Winner: {winner}\n")
         
     
 
