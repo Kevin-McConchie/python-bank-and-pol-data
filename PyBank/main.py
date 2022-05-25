@@ -19,11 +19,13 @@ with open (budget_data, newline="") as csv_file:
     month = []
     profit = []
     profit_change = []
-        
+     
+     #adds months and profit to lists   
     for row in csvreader:
         month.append(row[0])
         profit.append(row[1])
     
+    #checks future cell against current and acounts for index starting at 0 and not going beyond last value
     for y in range(len(profit)-1):
         profit_change.append(int(profit[y+1])-int(profit[y]))
             
@@ -48,7 +50,7 @@ max_decrease = min(profit_change)
 month_decrease = profit_change.index(min(profit_change))+1
     
     
-    #Print results
+#Print results
 print ("Financial Analysis")
 print ("----------------------------")
 print (f"Total Months : {str(total_months)}")
@@ -63,7 +65,6 @@ output_path = os.path.join("Analysis", "analysis.txt")
 # Open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'a', newline='') as f:
 
-    
     # Write Analysis in Analysis/analysis.txt
     f.write("Financial Analysis\n")
     f.write("----------------------------\n")

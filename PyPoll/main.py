@@ -62,9 +62,10 @@ for i, (candidates, vote_percent, candidate_votes) in enumerate(result_table):
 print("-------------------------")
 
 
+
 #find winner
 winner = max(poll_result,key=poll_result.get)
-print(winner)
+print(f"Winner: {winner}")
 
 # save the output file path
 output_path = os.path.join("Analysis", "Election Result.txt")
@@ -75,16 +76,6 @@ with open(output_path, 'w', newline='') as textfile:
         textfile.writelines(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
         for row in result_table:
             textfile.writelines(f"{row[0]}: {row[1]}% ({row[2]})\n")
-        textfile.writelines("-------------------------\n")
-        textfile.writelines(f"Winner: {winner}\n")
+        textfile.writelines(f"-------------------------\nWinner: {winner}\n")
         
     
-
-    
-#print results
-# print ((result_table))
-# print (tuple(result_table))
-# print(vote_percent)
-#print(candidate_votes)
-# print (candidates)
-#print(candidate, poll_result[candidate])
