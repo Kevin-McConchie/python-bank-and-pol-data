@@ -42,6 +42,7 @@ with open (election_data, newline="") as csv_file:
 candidates= list(poll_result.keys())
 candidate_votes=list(poll_result.values())
 
+#work out percentage of votes per candidate
 for p in candidate_votes:
     vote_percent.append('{:.3f}%'.format(p/total_votes*100,3))
     
@@ -51,18 +52,25 @@ print("Election Results:")
 print("-------------------------")
 print(f"Total Votes: {(total_votes)}")
 print("-------------------------")
-result_table = zip(candidates, vote_percent, candidate_votes)
 
 #prints list of canditate and their votes (vertical print of dicitionary)
 # Zip all three lists together
+result_table = list(zip(candidates, vote_percent, candidate_votes))
+
 for i, (candidates, vote_percent, candidate_votes) in enumerate(result_table):
     print(f"{candidates}:  {vote_percent} ({candidate_votes})")
+print("-------------------------")
 
 
+#find winner
+# winner = []
 
-## The winner of the election based on popular vote.
+# for name in result_table:
+#     if max(candidate_votes)== name[2]:
+#         winner.append(name[0])
 
-#winner = max(candidate_votes)
+# # add winner to results
+# print(winner)
 
 # save the output file path
 output_path = os.path.join("Analysis", "Election Result.txt")
@@ -71,9 +79,10 @@ output_path = os.path.join("Analysis", "Election Result.txt")
 with open(output_path, 'w', newline='') as textfile:
     
         textfile.writelines(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
-        for entry in result_table:
-            textfile.writelines(f"{entry[0]}: {entry[2]}% ({entry[1]})\n")
-        
+        for row in result_table:
+            textfile.writelines(f"{row[0]}: {row[1]}% ({row[2]})\n")
+        textfile.writelines("-------------------------\n")
+        textfile.writelines(f"Winner: xxxx\n")
         
     
 
@@ -82,6 +91,6 @@ with open(output_path, 'w', newline='') as textfile:
 # print ((result_table))
 # print (tuple(result_table))
 # print(vote_percent)
-# print(candidate_votes)
+#print(candidate_votes)
 # print (candidates)
 #print(candidate, poll_result[candidate])
