@@ -21,6 +21,7 @@ with open (election_data, newline="") as csv_file:
     vote_percent=[]
     candidate_votes=[]
     
+    #set vote count
     total_votes=0
     
     #collation of candidate and votes
@@ -44,7 +45,7 @@ candidate_votes=list(poll_result.values())
 
 #work out percentage of votes per candidate
 for p in candidate_votes:
-    vote_percent.append('{:.3f}%'.format(p/total_votes*100,3))
+    vote_percent.append('{:.3f}%'.format(p/total_votes*100))
     
 
 #print results
@@ -76,6 +77,4 @@ with open(output_path, 'w', newline='') as textfile:
         textfile.writelines(f"Election Results \n------------------------- \nTotal Votes:  {(total_votes)}\n-------------------------\n")
         for row in result_table:
             textfile.writelines(f"{row[0]}: {row[1]}% ({row[2]})\n")
-        textfile.writelines(f"-------------------------\nWinner: {winner}\n")
-        
-    
+        textfile.writelines(f"-------------------------\nWinner: {winner}")

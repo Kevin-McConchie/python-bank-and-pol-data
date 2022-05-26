@@ -19,13 +19,14 @@ with open (budget_data, newline="") as csv_file:
     month = []
     profit = []
     profit_change = []
-     
-     #adds months and profit to lists   
+    
+    #adds months and profit to lists   
     for row in csvreader:
         month.append(row[0])
         profit.append(row[1])
     
     #checks future cell against current and acounts for index starting at 0 and not going beyond last value
+    #also accounts for 1 less change as first value doesn't have a change
     for y in range(len(profit)-1):
         profit_change.append(int(profit[y+1])-int(profit[y]))
             
